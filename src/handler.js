@@ -47,7 +47,7 @@ const addBookHandler = (request, h) => {
     });
     response.code(201);
     return response;
-  // } if (books[0].name === null) {
+  } // if (books[0].name === null) {
   //   const response = h.response({
   //     status: "fail",
   //     message: "Gagal menambahkan buku. Mohon isi nama buku",
@@ -185,4 +185,4 @@ module.exports = {
   getBookByIdHandler,
   editBookHandler,
   deleteBookHandler,
-};
+}
