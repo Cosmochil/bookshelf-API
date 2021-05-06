@@ -47,47 +47,37 @@ const addBookHandler = (request, h) => {
     });
     response.code(201);
     return response;
-  } else if (name == null) {
-    const response = h.response({
-      status: "fail",
-      message: "Gagal menambahkan buku. Mohon isi nama buku",
-    });
-    response.code(400);
-    return response;
-  } else if (readPage > pageCount) {
-    const response = h.response({
-      status: "fail",
-      message:
-        "Gagal menambahkan buku. readPage tidak boleh lebih besar dari pageCount",
-    });
-    response.code(400);
-    return response;
-  }
-  const response = h.response({
-    status: "error",
-    message: "Buku gagal ditambahkan",
-  });
-  response.code(500);
-  return response;
+  // } if (books[0].name === null) {
+  //   const response = h.response({
+  //     status: "fail",
+  //     message: "Gagal menambahkan buku. Mohon isi nama buku",
+  //   });
+  //   response.code(400);
+  //   return response;
+  // } if (books[0].readPage > books[0].pageCount) {
+  //   const response = h.response({
+  //     status: "fail",
+  //     message:
+  //       "Gagal menambahkan buku. readPage tidak boleh lebih besar dari pageCount",
+  //   });
+  //   response.code(400);
+  //   return response;
+  // }
+  // const response = h.response({
+  //   status: "error",
+  //   message: "Buku gagal ditambahkan",
+  // });
+  // response.code(500);
+  // return response;
 };
 
-const getAllBooksHandler = () => {
-  if (books.length === 0)
-    ({
-      status: "success",
-      data: {
-        books: [],
-      },
-    });
-  else {
-    ({
-      status: "success",
-      data: {
-        books,
-      },
-    });
-  }
-};
+const getAllBooksHandler = () => ({
+  status: 'success',
+  data: {
+    books,
+  },
+});
+
 
 const getBookByIdHandler = (request, h) => {
   const { id } = request.params;
@@ -170,7 +160,7 @@ const editBookHandler = (request, h) => {
 const deleteBookHandler = (request, h) => {
   const { id } = request.params;
 
-  const index = notes.findIndex((note) => note.id === id);
+  const index = books.findIndex((book) => book.id === id);
 
   if (index !== -1) {
     notes.splice(index, 1);
